@@ -264,15 +264,7 @@ export default function P_M_Todo0() {
     );
   };
 
-  // Custom Toolbar Component
-  const CustomToolbar = ({ label }: any) => {
-    return (
-      <div className="custom-toolbar">
-        <strong>{label}</strong>
-        {/* Add custom buttons or components here */}
-      </div>
-    );
-  };
+
 
   // Handle month and year changes
   const handleMonthChange = (e) => {
@@ -373,7 +365,6 @@ export default function P_M_Todo0() {
                       }}
                       onSelectSlot={handleSelectSlot}
                       onSelectEvent={handleSelect}
-                      toolbar={CustomToolbar}
                     />
                   </div>
                 </div>

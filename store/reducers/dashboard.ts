@@ -167,7 +167,6 @@ const dashboardSlice = createSlice({
         (state, action) => {
           state.loading = false;
           const propName = action.type.split("/")[1]; // Extract property name from action type
-          state[propName] = action.payload;
         }
       )
       .addMatcher(

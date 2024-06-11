@@ -1,7 +1,8 @@
+import { dashboardSelector } from "@/store/reducers/dashboard";
 import { useSelector } from "react-redux";
 
 function Number_of_Interviews() {
-    const dashboardData = useSelector(state => state.dashboard)
+    const dashboardData = useSelector(dashboardSelector);
 
     return (
         <div className="row w-100">
