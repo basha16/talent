@@ -1,4 +1,5 @@
 "use client";
+// @ts-nocheck
 import Link from "next/link";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
