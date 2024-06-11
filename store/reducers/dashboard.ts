@@ -44,54 +44,54 @@ const createAsyncThunkHandler = (apiFunction?:any, propName?:any, onLoginSuccess
       console.error(`${propName} failed:`, error);
       throw error;
     }
-  });
+  }) as any;
 
 // Define async thunks using the helper function
 export const getCandidateStatusList = createAsyncThunkHandler(
   GET_CANDIDATE_STATUS_API,
   "candidate_status_list"
-);
+) as any;
 
 export const getInterviewAndHiredDetails = createAsyncThunkHandler(
   GET_INTERVIEW_AND_HIRED_DETAILS_API,
   "interview_and_hired_details"
-);
+) as any;
 
 export const getPostedJobList = createAsyncThunkHandler(
   GET_POSTED_JOB_LISTS_API,
   "posted_job_list"
-);
+) as any;
 
 export const getPostedJobActiveList = createAsyncThunkHandler(
   GET_POSTED_JOB_Active_LISTS_API,
   "posted_job_active_list"
-);
+) as any;
 
 export const getCalendarDetails = createAsyncThunkHandler(
   GET_CALENDAR_DETAILS_API,
   "calendar_details"
-);
+) as any;
 
 
 export const getTodayMeetingDetailsList = createAsyncThunkHandler(
   GET_TODAY_MEETING_DETAILS_API,
   "today_meeting_details_list"
-);
+) as any;
 
 export const getActivities = createAsyncThunkHandler(
   GET_ACTIVITIES_API,
   "activities_list"
-);
+) as any;
 
 export const getUpcomings = createAsyncThunkHandler(
   GET_UPCOMINGS_API,
   "upcomings_list"
-);
+) as any;
 
 export const getHirings = createAsyncThunkHandler(
   GET_HIRED_API,
   "hirings_list"
-);
+) as any;
 export const userlogin = createAsyncThunkHandler(
   LOGIN_API,
   "login",
@@ -104,29 +104,29 @@ export const userlogin = createAsyncThunkHandler(
       JSON.stringify({ access_token, user_email, user_id, refresh_token })
     );
   }
-);
+) as any;
 
 export const getTicketList = createAsyncThunkHandler(
   GET_TICKET_LIST_API,
   "ticket_List"
-);
+) as any;
 
-export const userLogout = createAsyncThunkHandler(LOGOUT_API, "logout");
+export const userLogout = createAsyncThunkHandler(LOGOUT_API, "logout") as any;
 
 export const userAccountManagementAccount = createAsyncThunkHandler(
   USER_ACCOUNT_MANAGEMENT_ACCOUNT_API,
   "user_account_management"
-);
+) as any;
 
 export const inventoryAssets = createAsyncThunkHandler(
   INVENTORY_ASSETS_API,
   "inventory_Assets"
-);
+) as any;
 
 export const getNotifications = createAsyncThunkHandler(
   NOTIFICATIONS_API,
   "notification_list"
-);
+) as any;
 
 
 const dashboardSlice = createSlice({

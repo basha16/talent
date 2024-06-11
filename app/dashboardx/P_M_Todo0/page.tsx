@@ -146,15 +146,15 @@ export default function P_M_Todo0() {
   };
 
 
-  const EventDetailModal = ({ event }) => {
-    if (!event) return null;
+  const EventDetailModal = () => {
+    if (!eventDetail) return null;
     const date = parseISO(eventDetail.start);
     const endEate = parseISO(eventDetail.end);
 
     const interviewDate = format(date, "do MMM yyyy");
 
-    const startTime = format(date, 'h:mm a'); 
-    const endTime = format(endEate, 'h:mm a'); 
+    const startTime = format(date, 'h:mm a');
+    const endTime = format(endEate, 'h:mm a');
 
 
     return (
@@ -265,7 +265,7 @@ export default function P_M_Todo0() {
   };
 
   // Custom Toolbar Component
-  const CustomToolbar = ({ label }) => {
+  const CustomToolbar = ({ label }: any) => {
     return (
       <div className="custom-toolbar">
         <strong>{label}</strong>
@@ -382,7 +382,7 @@ export default function P_M_Todo0() {
           </div>
         </div>
       </div>
-      {activeEventModal && <EventDetailModal event={activeEventModal} />} {/* Render the modal if an event is selected */}
+      {activeEventModal && <EventDetailModal />} {/* Render the modal if an event is selected */}
     </section>
   );
 }
