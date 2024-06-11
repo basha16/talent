@@ -53,9 +53,10 @@ export default function P_M_Todo0() {
   const calendarData = useSelector(dashboardSelector);
 
   useEffect(() => {
-    dispatch(getCalendarDetails()).catch((error) => {
-      console.error("Failed to fetch calendar details: ", error);
-    });
+    dispatch(getCalendarDetails({
+      from_date: "2024-06-01",
+      to_date: "2024-06-30",
+    }))
   }, [dispatch]);
 
   const [selectedMonth, setSelectedMonth] = useState("");
@@ -65,7 +66,6 @@ export default function P_M_Todo0() {
   const [events, setEvents] = useState([]);
   const [eventDetail, setEventDetail] = useState(null);
 
-  console.log(eventDetail, 'eventDetaileventDetaileventDetaileventDetail')
   useEffect(() => {
     if (calendarData?.calendar_details) {
       setEvents(calendarData.calendar_details.map((details) => ({
@@ -76,6 +76,18 @@ export default function P_M_Todo0() {
       })));
     }
   }, [setEvents, calendarData]);
+
+  useEffect(() => {
+    if (selectedYear && selectedMonth) {
+      let selected_from_date = `${selectedYear}-${selectedMonth}-01`;
+      let selected_to_date = `${selectedYear}-${selectedMonth}-30`;
+
+      dispatch(getCalendarDetails({
+        from_date: selected_from_date,
+        to_date: selected_to_date
+      }))
+    }
+  }, [selectedMonth, selectedYear])
 
   // Check for overlapping events
   const checkOverlappingEvents = () => {
@@ -97,6 +109,7 @@ export default function P_M_Todo0() {
 
   const CustomEvent = ({ event }) => {
     const isOverlapping = overlaps[events.indexOf(event)] > 1;
+
     const formattedStartTime = event.start.toLocaleString("en-US", {
       hour: "numeric",
       minute: "2-digit",
@@ -214,8 +227,14 @@ export default function P_M_Todo0() {
                   width: "100%",
                   marginBottom: "10px",
                 }}>
-                  Resume
-                  <img src="/image/download.png" alt="Download" style={{ width: "20px", height: "20px" }} />
+                  <div className="flex justify-between w-full">
+                    <span>
+                      Resume
+                    </span>
+
+                    <img src="/image/download.png" alt="Download" style={{ width: "20px", height: "20px" }} />
+                  </div>
+
                 </button>
               </a>
               <a href="path/to/aadharcard.pdf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
@@ -230,36 +249,33 @@ export default function P_M_Todo0() {
                   width: "100%",
                   marginBottom: "10px",
                 }}>
-                  Aadharcard
-                  <img src="/image/download.png" alt="View" style={{ width: "20px", height: "20px" }} />
+                  <div className="flex justify-between w-full">
+                    <span>
+                      Aadharcard
+                    </span>
+                    <img src="/image/download.png" alt="View" style={{ width: "20px", height: "20px" }} />
+
+                  </div>
+
                 </button>
               </a>
             </div>
           </div>
 
           <div className="flex flex-col p-4 justify-items-center justify-center ring-inset">
-
             <div className="border border-gray-200 p-4">
               <img src="/image/Google_Meet.png" alt="" style={{ width: "100px", height: "100px" }} />
-
             </div>
 
             <div className="pt-4 ms-4">
-              <button style={{
-                backgroundColor: "#0B72EC",
-                color: "white",
-                padding: "10px 20px",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}>
-                JOIN
-              </button>
+              <a href={eventDetail.link} target="_blank" className="inline-block">
+                <button className="bg-blue-600 text-white px-5 py-2.5 border-none rounded cursor-pointer">
+                  JOIN
+                </button>
+              </a>
             </div>
           </div>
         </div>
-
-
       </div>
     );
   };

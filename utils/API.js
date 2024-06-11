@@ -55,10 +55,10 @@ export const GET_POSTED_JOB_Active_LISTS_API = () =>
     "get"
   );
 
-export const GET_CALENDAR_DETAILS_API = () =>
+export const GET_CALENDAR_DETAILS_API = ({ from_date, to_date }) =>
   makeRequest(API_ENDPOINTS.USER_CALENDAR_DETAILS_BY_DATES, {
-    from_date: "2024-06-01",
-    to_date: "2024-06-30",
+    from_date,
+    to_date,
   },
     "get");
 
